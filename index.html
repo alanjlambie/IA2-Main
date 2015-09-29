@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			body {background-color:lightgrey}
+			h1   {color:blue; font-size: large;font-family:courier;}
+			h2   {color:white; font-size: medium;font-family:courier;}
+			h5   {color:black; font-size: medium;font-family:courier;}
+			p    {color:red; font-size: medium}
+		</style>
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+		<script src='js/Chart.js-master/Chart.min.js'></script>
+		<script>
+			var socket = io();
+			var fill_color = "rgba(172,194,132,0.4)";
+			var labels_data =[];
+			var data_out = [];
+			var light=[];
+			var light_num=0;
+			var lastpoint = 30;
+			var lapse=true;
+			var labels_point, pointstr="";
+			var options = {animation: false, scaleOverride: true, scaleSteps : 40, scaleStepWidth : 1, scaleStartValue : 10, datasetStroke : true, scaleLineColor: "rgba(0,0,0,.1)",scaleFontColor: "#000000",scaleFontSize: 9,};
+			var labels_data = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30];
+			var i, z=0;
+			var idx_l, idx_t = 0;
+
+//When we get the 'data" message... ==========================================================
+
+			socket.on('to browser', function(data)
+			{
+
+			if (Number(data)>60)
+			{
+					light[idx_l]=data;
+					light_num = Number(light[idx_l]);
+					idx_l++;
+					
+// =======  (0 to 99) ======================================
+					if (light_num < 100)
+					{
+						$("#p2").text("");
+						$("#p5").text("");
+						$("#p9").text("");
+						$("#p12").text("");
+						$("#p16").text("");
+						$("#p19").text("");
+						$("#p22").text("");
+						$("#p24").text("");
+			// cells of visualization ======================================
+						$("#div0").show();$("#p0").text(light_num);
+						$("#div1").hide();
+						$("#div2").hide();
+						$("#div3").hide();
+						$("#div4").hide();
+						$("#div5").hide();
+						$("#div6").hide();
+						$("#div7").hide();
+						$("#div8").hide();
+						$("#div9").hide();
+						$("#div10").hide();
+						$("#div11").hide();
+						$("#div12").hide();
+						$("#div13").hide();
+						$("#div14").hide();
+						$("#div15").hide();
+						$("#div16").hide();
+						$("#div17").hide();
+						$("#div18").hide();
+						$("#div19").hide();
+						$("#div20").hide();
+						$("#div21").hide();
+						$("#div22").hide();
+						$("#div23").hide();
+						$("#div24").hide();
+					};
+// =======  (100 to 199) ======================================
+					if (light_num >= 100 && light_num < 200)
+					{
+						$("#p0").text("");
+						$("#p5").text("");
+						$("#p9").text("");
+						$("#p12").text("");
+						$("#p16").text("");
+						$("#p19").text("");
+						$("#p22").text("");
+						$("#p24").text("");
+			// cells of visualization ======================================
+						$("#div0").show();
+						$("#div1").show();
+						$("#div2").show();$("#p2").text(light_num);
+						$("#div3").hide();
+						$("#div4").hide();
+						$("#div5").hide();
+						$("#div6").hide();
+						$("#div7").hide();
+						$("#div8").hide();
+						$("#div9").hide();
+						$("#div10").hide();
+						$("#div11").hide();
+						$("#div12").hide();
+						$("#div13").hide();
+						$("#div14").hide();
+						$("#div15").hide();
+						$("#div16").hide();
+						$("#div17").hide();
+						$("#div18").hide();
+						$("#div19").hide();
+						$("#div20").hide();
+						$("#div21").hide();
+						$("#div22").hide();
+						$("#div23").hide();
+						$("#div24").hide();
+					};
+// =======  (200 to 400) ======================================
+					if (light_num >= 200 && light_num < 400)
+					{
+						$("#p0").text("");
+						$("#p2").text("");
+						$("#p9").text("");
+						$("#p12").text("");
+						$("#p16").text("");
+						$("#p19").text("");
+						$("#p22").text("");
+						$("#p24").text("");
+			// cells of visualization ======================================
+						$("#div0").show();
+						$("#div1").show();
+						$("#div2").show();
+						$("#div3").show();
+						$("#div4").show();
+						$("#div5").show();$("#p5").text(light_num);
+						$("#div6").hide();
+						$("#div7").hide();
+						$("#div8").hide();
+						$("#div9").hide();
+						$("#div10").hide();
+						$("#div11").hide();
+						$("#div12").hide();
+						$("#div13").hide();
+						$("#div14").hide();
+						$("#div15").hide();
+						$("#div16").hide();
+						$("#div17").hide();
+						$("#div18").hide();
+						$("#div19").hide();
+						$("#div20").hide();
+						$("#div21").hide();
+						$("#div22").hide();
+						$("#div23").hide();
+						$("#div24").hide();
+					};
+// =======  (400 to 600) ======================================
+					if (light_num >= 400 && light_num < 600)
+					{
+						$("#p0").text("");
+						$("#p2").text("");
+						$("#p5").text("");
+						$("#p12").text("");
+						$("#p16").text("");
+						$("#p19").text("");
+						$("#p22").text("");
+						$("#p24").text("");
+			// cells of visualization ======================================
+						$("#div0").show();
+						$("#div1").show();
+						$("#div2").show();
+						$("#div3").show();
+						$("#div4").show();
+						$("#div5").show();
+						$("#div6").show();
+						$("#div7").show();
+						$("#div8").show();
+						$("#div9").show();$("#p9").text(light_num);
+						$("#div10").hide();
+						$("#div11").hide();
+						$("#div12").hide();
+						$("#div13").hide();
+						$("#div14").hide();
+						$("#div15").hide();
+						$("#div16").hide();
+						$("#div17").hide();
+						$("#div18").hide();
+						$("#div19").hide();
+						$("#div20").hide();
+						$("#div21").hide();
+						$("#div22").hide();
+						$("#div23").hide();
+						$("#div24").hide();
+					};
+// =======  (600 to 900) ======================================
+					if (light_num >= 600 && light_num < 900)
+					{
+						$("#p0").text("");
+						$("#p2").text("");
+						$("#p5").text("");
+						$("#p9").text("");
+						$("#p16").text("");
+						$("#p19").text("");
+						$("#p22").text("");
+						$("#p24").text("");
+			// cells of visualization ======================================
+						$("#div0").show();
+						$("#div1").show();
+						$("#div2").show();
+						$("#div3").show();
+						$("#div4").show();
+						$("#div5").show();
+						$("#div6").show();
+						$("#div7").show();
+						$("#div8").show();
+						$("#div9").show();
+						$("#div10").show();
+						$("#div11").show();
+						$("#div12").show();$("#p12").text(light_num);
+						$("#div13").hide();
+						$("#div14").hide();
+						$("#div15").hide();
+						$("#div16").hide();
+						$("#div17").hide();
+						$("#div18").hide();
+						$("#div19").hide();
+						$("#div20").hide();
+						$("#div21").hide();
+						$("#div22").hide();
+						$("#div23").hide();
+						$("#div24").hide();
+					};	
+// =======  (900 to 1200) ======================================
+					if (light_num >= 900 && light_num < 1200)
+					{
+						$("#p0").text("");
+						$("#p2").text("");
+						$("#p5").text("");
+						$("#p9").text("");
+						$("#p12").text("");
+						$("#p19").text("");
+						$("#p22").text("");
+						$("#p24").text("");
+			// cells of visualization ======================================
+						$("#div0").show();
+						$("#div1").show();
+						$("#div2").show();
+						$("#div3").show();
+						$("#div4").show();
+						$("#div5").show();
+						$("#div6").show();
+						$("#div7").show();
+						$("#div8").show();
+						$("#div9").show();
+						$("#div10").show();
+						$("#div11").show();
+						$("#div12").show();
+						$("#div13").show();
+						$("#div14").show();
+						$("#div15").show();
+						$("#div16").show();$("#p16").text(light_num);
+						$("#div17").hide();
+						$("#div18").hide();
+						$("#div19").hide();
+						$("#div20").hide();
+						$("#div21").hide();
+						$("#div22").hide();
+						$("#div23").hide();
+						$("#div24").hide();
+					};	
+// =======  (1200 to 1700) ======================================
+					if (light_num >= 1200 && light_num < 1700)
+					{
+						$("#p0").text("");
+						$("#p2").text("");
+						$("#p5").text("");
+						$("#p9").text("");
+						$("#p12").text("");
+						$("#p16").text("");
+						$("#p22").text("");
+						$("#p24").text("");
+						
+			// cells of visualization ======================================
+						$("#div0").show();
+						$("#div1").show();
+						$("#div2").show();
+						$("#div3").show();
+						$("#div4").show();
+						$("#div5").show();
+						$("#div6").show();
+						$("#div7").show();
+						$("#div8").show();
+						$("#div9").show();
+						$("#div10").show();
+						$("#div11").show();
+						$("#div12").show();
+						$("#div13").show();
+						$("#div14").show();
+						$("#div15").show();
+						$("#div16").show();
+						$("#div17").show();
+						$("#div18").show();
+						$("#div19").show();$("#p19").text(light_num);
+						$("#div20").hide();
+						$("#div21").hide();
+						$("#div22").hide();
+						$("#div23").hide();
+						$("#div24").hide();
+					};
+
+// =======  (1700 to 2000) ======================================
+					if (light_num >= 1700 && light_num < 2000)
+					{
+						$("#p0").text("");
+						$("#p2").text("");
+						$("#p5").text("");
+						$("#p9").text("");
+						$("#p12").text("");
+						$("#p16").text("");
+						$("#p19").text("");
+						$("#p24").text("");
+			// cells of visualization ======================================
+						$("#div0").show();
+						$("#div1").show();
+						$("#div2").show();
+						$("#div3").show();
+						$("#div4").show();
+						$("#div5").show();
+						$("#div6").show();
+						$("#div7").show();
+						$("#div8").show();
+						$("#div9").show();
+						$("#div10").show();
+						$("#div11").show();
+						$("#div12").show();
+						$("#div13").show();
+						$("#div14").show();
+						$("#div15").show();
+						$("#div16").show();
+						$("#div17").show();
+						$("#div18").show();
+						$("#div19").show();
+						$("#div20").show();
+						$("#div21").show();
+						$("#div22").show();$("#p22").text(light_num);
+						$("#div23").hide();
+						$("#div24").hide();
+					};
+					
+// =======  (2000 to more) ======================================
+					if (light_num >= 2000)
+					{
+						$("#p0").text("");
+						$("#p2").text("");
+						$("#p5").text("");
+						$("#p9").text("");
+						$("#p12").text("");
+						$("#p16").text("");
+						$("#p19").text("");
+						$("#p22").text("");
+						$("#p24").text(light_num);
+			// cells of visualization ======================================
+						$("#div0").show();
+						$("#div1").show();
+						$("#div2").show();
+						$("#div3").show();
+						$("#div4").show();
+						$("#div5").show();
+						$("#div6").show();
+						$("#div7").show();
+						$("#div8").show();
+						$("#div9").show();
+						$("#div10").show();
+						$("#div11").show();
+						$("#div12").show();
+						$("#div13").show();
+						$("#div14").show();
+						$("#div15").show();
+						$("#div16").show();
+						$("#div17").show();
+						$("#div18").show();
+						$("#div19").show();
+						$("#div20").show();
+						$("#div21").show();
+						$("#div22").show();
+						$("#div23").show();
+						$("#div24").show();
+					};
+			}
+			else
+			{
+				var data_num = Number(data);			
+				data_out[idx_t] = data_num;
+				if (data_num>30){fill_color = "rgba(233,157,116,0.4)"; };
+				if (data_num>40){fill_color = "rgba(233,124,116,0.4)"; };
+				if (data_num<=30 && data_num>=25){fill_color = "rgba(246,227,206,0.7)"; };
+				if (data_num<25 && data_num>=20){fill_color = "rgba(246,227,206,0.4)"; };
+				if (data_num<20 && data_num>=10){fill_color = "rgba(46,204,250,0.4)"; };
+				if (data_num<10){fill_color = "rgba(46,204,250,0.7)"; };
+				var buyerData =
+				{
+				labels : labels_data,
+				datasets : [{
+				            fillColor : fill_color,
+				            strokeColor : "#ACC26D",
+				            pointColor : "#fff",
+				            pointStrokeColor : "#9DB86D",
+				            data : data_out
+				            }]
+				}
+				var buyers = document.getElementById('graph1').getContext('2d');
+				new Chart(buyers).Line(buyerData, options);
+				idx_t++;
+				if (idx_t >= 30)
+				{
+					idx_t =0;
+					data_out=[];
+					labels_point="[";
+					for (z = 0; z < 30; z++)
+					{
+						lastpoint = lastpoint + 1;
+						labels_data[z] = lastpoint;
+					};
+				};
+			};
+			i++;
+			});
+
+			//Also send some data back once per second
+			//window.setInterval(
+			//	function()
+			//	{
+			//		var msg = "Hello: " + Math.random();
+			//		console.log(msg);
+			//		socket.emit('to serial', msg);
+			//	},
+			//	1000
+			//);
+		</script>
+	</head>
+	<body>
+		<div align="center" style="width:1200px;height:80px;">
+			<table style="width:400px;height:80px; border-color: rgb(0, 0, 0);">
+				<tr><td align="center">
+				<h1>Environmental Measurements</font></h1>
+				<h2>Registered by FETLab Station at R.I.T.    Instrument: TMP102</h2>
+				</td></tr>
+			</table>
+		</div>
+		<div style="width:1200px;height:600px">
+			<table style="width:1200px;height:400px">
+				<tr><td></td><td collspan="3"><p>Temperature (Celcius)</p></td></tr>
+				<tr>
+					<td style="width:100px;"></td>
+					<td style="background-color: rgb(157, 164, 166);"><canvas id="graph1" width="1000" height="400"></canvas></td>
+					<td style="width:100px;"></td>
+				</tr>
+			</table>
+		</div>
+		
+                <div align="center" style="width:1200px;height:80px">
+			<table style="width:400px;height:80px; border-color: rgb(0, 0, 0);">
+				<tr><td align="center">
+				<h2>Instrument: Photo Resistor</h2>
+				<p>Luminosity</p>
+				</td></tr>
+			</table>
+		</div>
+		<table>
+			<tr>
+			<td style="width:100px;height:20px;"></td>
+			<td><div id="div0" style="width:36px;height:20px;display:none;background-color: rgb(255, 255, 204);"></div></td>
+			<td><div id="div1" style="width:36px;height:20px;display:none;background-color: rgb(255, 255, 204);"></div></td>
+			<td><div id="div2" style="width:36px;height:20px;display:none;background-color: rgb(255, 255, 0);"></div></td>
+			<td><div id="div3" style="width:36px;height:20px;display:none;background-color: rgb(255, 255, 0);"></div></td>
+			<td><div id="div4" style="width:36px;height:20px;display:none;background-color: rgb(230, 230, 0);"></div></td>
+			<td><div id="div5" style="width:36px;height:20px;display:none;background-color: rgb(230, 230,0);"></div></td>
+			<td><div id="div6" style="width:36px;height:20px;display:none;background-color: rgb(153, 184, 230);"></div></td>
+			<td><div id="div7" style="width:36px;height:20px;display:none;background-color: rgb(153, 184, 230);"></div></td>
+			<td><div id="div8" style="width:36px;height:20px;display:none;background-color: rgb(124, 166, 207);"></div></td>
+			<td><div id="div9" style="width:36px;height:20px;display:none;background-color: rgb(124, 166, 207);"></div></td>
+			<td><div id="div10" style="width:36px;height:20px;display:none;background-color: rgb(112, 149, 186);"></div></td>
+			<td><div id="div11" style="width:36px;height:20px;display:none;background-color: rgb(112, 149, 186);"></div></td>
+			<td><div id="div12" style="width:36px;height:20px;display:none;background-color: rgb(101, 134, 167);"></div></td>
+			<td><div id="div13" style="width:36px;height:20px;display:none;background-color: rgb(101, 134, 167);"></div></td>
+			<td><div id="div14" style="width:36px;height:20px;display:none;background-color: rgb(81, 107, 134);"></div></td>
+			<td><div id="div15" style="width:36px;height:20px;display:none;background-color: rgb(81, 107, 134);"></div></td>
+			<td><div id="div16" style="width:36px;height:20px;display:none;background-color: rgb(65, 86, 107);"></div></td>
+			<td><div id="div17" style="width:36px;height:20px;display:none;background-color: rgb(65, 86, 107);"></div></td>
+			<td><div id="div18" style="width:36px;height:20px;display:none;background-color: rgb(39, 52, 64);"></div></td>
+			<td><div id="div19" style="width:36px;height:20px;display:none;background-color: rgb(39, 52, 64);"></div></td>
+			<td><div id="div20" style="width:36px;height:20px;display:none;background-color: rgb(39, 52, 64);"></div></td>
+			<td><div id="div21" style="width:36px;height:20px;display:none;background-color: rgb(39, 52, 64);"></div></td>
+			<td><div id="div22" style="width:36px;height:20px;display:none;background-color: rgb(39, 52, 64);"></div></td>
+			<td><div id="div23" style="width:36px;height:20px;display:none;background-color: rgb(0, 0, 0);"></div></td>
+			<td><div id="div24" style="width:36px;height:20px;display:none;background-color: rgb(0, 0, 0);"></div></td>
+			
+			</tr>
+			<tr>
+			<td style="width:100px;height:20px;"></td>
+			<td><h5 id="p0"></h5></td>
+			<td><h5 id="p1"></h5></td>
+			<td><h5 id="p2"></h5></td>
+			<td><h5 id="p3"></h5></td>
+			<td><h5 id="p4"></h5></td>
+			<td><h5 id="p5"></h5></td>
+			<td><h5 id="p6"></h5></td>
+			<td><h5 id="p7"></h5></td>
+			<td><h5 id="p8"></h5></td>
+			<td><h5 id="p9"></h5></td>
+			<td><h5 id="p10"></h5></td>
+			<td><h5 id="p11"></h5></td>
+			<td><h5 id="p12"></h5></td>
+			<td><h5 id="p13"></h5></td>
+			<td><h5 id="p14"></h5></td>
+			<td><h5 id="p15"></h5></td>
+			<td><h5 id="p16"></h5></td>
+			<td><h5 id="p17"></h5></td>
+			<td><h5 id="p18"></h5></td>
+			<td><h5 id="p19"></h5></td>
+			<td><h5 id="p20"></h5></td>
+			<td><h5 id="p21"></h5></td>
+			<td><h5 id="p22"></h5></td>
+			<td><h5 id="p23"></h5></td>
+			<td><h5 id="p24"></h5></td>
+			</tr>
+		</table>
+		</div>
+		<div id="label"></div>
+	</body>
+</html>
