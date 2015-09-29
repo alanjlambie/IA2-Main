@@ -13,11 +13,14 @@ PHOTON Specs:
     Soft AP setup
     FCC/CE/IC certified
 For this configuration 2 sensors are connected to the photon:
+
 1) TMP102 : Temperature sensor.
 2) Photo resistor (SEN 0988 Sparkfun).
 
+
 Software (libraries)
-1) socket.io-1.2.0.js : Connect serial port incoming data to a mini server.
+
+1) socket.io-1.2.0.js : Connect serial port incoming data to a mini browser.
 2) server.js : implement a mini-browser and connect with browser.
 3) Chart.js : Visualization library.
 
